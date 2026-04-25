@@ -31,6 +31,8 @@ def main(argv: list[str]) -> int:
 
     print(f"# {new_version}")
     print("")
+    print(f"{len(added) + len(removed) + len(changed)} diffs ({len(added)} new, {len(removed)} gone, {len(changed)} different)")
+    print("")
     print(f"### new in {new_version}:")
     print("")
     print("```js")
@@ -64,6 +66,26 @@ def main(argv: list[str]) -> int:
         else:
             print(f"""user_pref("{pref}", "{value}"); // {old_value}""")
     print("```")
+    #print("")
+    #print("---")
+    #print("")
+    #print("### ignore")
+    #print("")
+    #print("<details><summary>click me for details</summary><p>")
+    #print("")
+    #print("==NEW")
+    #print("```js")
+    #print("````")
+    #print("")
+    #print("==REMOVED, RENAMED or HIDDEN")
+    #print("```js")
+    #print("````")
+    #print("")
+    #print("==CHANGED")
+    #print("```js")
+    #print("````")
+    #print("")
+    #print("</p></details>")
 
     return os.EX_OK
 

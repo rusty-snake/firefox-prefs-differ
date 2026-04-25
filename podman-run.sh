@@ -23,4 +23,23 @@ podman_run_args=(
 	--read-only
 	--pull=never
 )
-podman run --rm "${podman_run_args[@]}" firefox-prefs-differ opt/mozilla/firefox/firefox -P default-release about:config
+podman run --rm "${podman_run_args[@]}" firefox-prefs-differ /opt/mozilla/firefox/firefox -P default-release about:config
+
+# Alternative command if podman is not an option for you:
+#bwrap_args=(
+#	--cap-drop all
+#	--unshare-net
+#	--ro-bind /usr /usr
+#	--symlink usr/bin /bin
+#	--symlink usr/lib /lib
+#	--symlink usr/lib64 /lib64
+#	--symlink usr/sbin /sbin
+#	--ro-bind /etc /etc
+#	--ro-bind /run /run
+#	--dir /tmp
+#	--proc /proc
+#	--dev /dev
+#	--ro-bind "$PWD/firefox-$firefox_version" /opt/mozilla/firefox
+#	--dir "$HOME"
+#)
+#bwrap "${bwrap_args[@]}" /opt/mozilla/firefox/firefox about:config

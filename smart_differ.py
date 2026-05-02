@@ -8,7 +8,7 @@ import sys
 def prefjs_parser(prefsjs: str) -> dict[str, str]:
     prefs = {}
     for line in prefsjs.splitlines():
-        m = re.match(r"""^user_pref\("(?P<pref>.*?)", "?(?P<value>.*?)"?\);$""", line)
+        m = re.match(r"""^pref\("(?P<pref>.*?)", "?(?P<value>.*?)"?\);$""", line)
         prefs[m.group("pref")] = m.group("value")
     return prefs
 
@@ -39,9 +39,9 @@ def main(argv: list[str]) -> int:
     for pref in sorted(added):
         value = new_prefs[pref]
         if re.match(r"""^(true|false|[0-9]+)$""", value):
-            print(f"""user_pref("{pref}", {value});""")
+            print(f"""pref("{pref}", {value});""")
         else:
-            print(f"""user_pref("{pref}", "{value}");""")
+            print(f"""pref("{pref}", "{value}");""")
     print("```")
     print("")
     print(f"### removed, renamed or hidden in {new_version}:")
@@ -50,9 +50,9 @@ def main(argv: list[str]) -> int:
     for pref in sorted(removed):
         value = old_prefs[pref]
         if re.match(r"""^(true|false|[0-9]+)$""", value):
-            print(f"""user_pref("{pref}", {value});""")
+            print(f"""pref("{pref}", {value});""")
         else:
-            print(f"""user_pref("{pref}", "{value}");""")
+            print(f"""pref("{pref}", "{value}");""")
     print("```")
     print("")
     print(f"### changed in {new_version}:")
@@ -62,9 +62,9 @@ def main(argv: list[str]) -> int:
         value = new_prefs[pref]
         old_value = old_prefs[pref]
         if re.match(r"""^(true|false|[0-9]+)$""", value):
-            print(f"""user_pref("{pref}", {value}); // {old_value}""")
+            print(f"""pref("{pref}", {value}); // {old_value}""")
         else:
-            print(f"""user_pref("{pref}", "{value}"); // {old_value}""")
+            print(f"""pref("{pref}", "{value}"); // {old_value}""")
     print("```")
     #print("")
     #print("---")

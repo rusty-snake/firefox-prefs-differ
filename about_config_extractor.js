@@ -19,12 +19,12 @@
         const pref = row.children[0].textContent;
         const value = row.children[1].textContent;
 
-        const userPrefString =
+        const prefString =
           /^(true|false|[0-9]+)$/.test(value)
-            ? `user_pref("${pref}", ${value});`
-            : `user_pref("${pref}", "${value}");`;
+            ? `pref("${pref}", ${value});`
+            : `pref("${pref}", "${value}");`;
 
-        allPrefs.push(userPrefString);
+        allPrefs.push(prefString);
     }
 
     await navigator.clipboard.writeText(allPrefs.join("\n"));

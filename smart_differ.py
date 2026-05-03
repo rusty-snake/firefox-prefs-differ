@@ -38,7 +38,7 @@ def main(argv: list[str]) -> int:
     print("```js")
     for pref in sorted(added):
         value = new_prefs[pref]
-        if re.match(r"""^(true|false|[0-9]+)$""", value):
+        if re.match(r"""^(true|false|-?[0-9]+)$""", value):
             print(f"""pref("{pref}", {value});""")
         else:
             print(f"""pref("{pref}", "{value}");""")
@@ -49,7 +49,7 @@ def main(argv: list[str]) -> int:
     print("```js")
     for pref in sorted(removed):
         value = old_prefs[pref]
-        if re.match(r"""^(true|false|[0-9]+)$""", value):
+        if re.match(r"""^(true|false|-?[0-9]+)$""", value):
             print(f"""pref("{pref}", {value});""")
         else:
             print(f"""pref("{pref}", "{value}");""")
@@ -61,7 +61,7 @@ def main(argv: list[str]) -> int:
     for pref in sorted(changed):
         value = new_prefs[pref]
         old_value = old_prefs[pref]
-        if re.match(r"""^(true|false|[0-9]+)$""", value):
+        if re.match(r"""^(true|false|-?[0-9]+)$""", value):
             print(f"""pref("{pref}", {value}); // {old_value}""")
         else:
             print(f"""pref("{pref}", "{value}"); // {old_value}""")

@@ -20,7 +20,7 @@
         const value = row.children[1].textContent;
 
         const prefString =
-          /^(true|false|[0-9]+)$/.test(value)
+          /^(true|false|-?[0-9]+)$/.test(value)
             ? `pref("${pref}", ${value});`
             : `pref("${pref}", "${value}");`;
 

@@ -30,11 +30,11 @@ def main(argv: list[str]) -> int:
             changed.add(pref)
 
     print(f"# {new_version}")
-    print("")
+    print()
     print(f"{len(added) + len(removed) + len(changed)} diffs ({len(added)} new, {len(removed)} gone, {len(changed)} different)")
-    print("")
+    print()
     print(f"### new in {new_version}:")
-    print("")
+    print()
     print("```js")
     for pref in sorted(added):
         value = new_prefs[pref]
@@ -43,9 +43,9 @@ def main(argv: list[str]) -> int:
         else:
             print(f"""pref("{pref}", "{value}");""")
     print("```")
-    print("")
+    print()
     print(f"### removed, renamed or hidden in {new_version}:")
-    print("")
+    print()
     print("```js")
     for pref in sorted(removed):
         value = old_prefs[pref]
@@ -54,9 +54,9 @@ def main(argv: list[str]) -> int:
         else:
             print(f"""pref("{pref}", "{value}");""")
     print("```")
-    print("")
+    print()
     print(f"### changed in {new_version}:")
-    print("")
+    print()
     print("```js")
     for pref in sorted(changed):
         value = new_prefs[pref]
@@ -66,25 +66,25 @@ def main(argv: list[str]) -> int:
         else:
             print(f"""pref("{pref}", "{value}"); // {old_value}""")
     print("```")
-    print("")
+    print()
     print("---")
-    print("")
+    print()
     print("### ignore")
-    print("")
+    print()
     print("<details><summary>click me for details</summary><p>")
-    print("")
+    print()
     print("==NEW")
     print("```js")
     print("````")
-    print("")
+    print()
     print("==REMOVED, RENAMED or HIDDEN")
     print("```js")
     print("````")
-    print("")
+    print()
     print("==CHANGED")
     print("```js")
     print("````")
-    print("")
+    print()
     print("</p></details>")
 
     return os.EX_OK
